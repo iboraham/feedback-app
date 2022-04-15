@@ -5,63 +5,33 @@ import PropTypes from "prop-types"
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Menu, MenuItem } from '@mui/material';
+import CommentIcon from '@mui/icons-material/Comment';
 
-export default function Header({title, onMenuClick}) {
-  const [menuBool, setMenuBool] = React.useState(false);
+export default function Header({title}) {
 return (
-	<AppBar >
+	<AppBar position="relative" sx={{ mb:5 }}>
 		<Toolbar>
-		<IconButton
+		<CommentIcon
 			size="large"
 			edge="start"
 			color="inherit"
 			aria-label="menu"
 			sx={{ mr: 2 }}
-      onClick={() => setMenuBool(!menuBool)}
-		>
-			{/*This is a simple Menu
-			Icon wrapped in Icon */}
-			<MenuIcon />
-		</IconButton>
-    <Menu
-        id="profile-menu"
-        open={Boolean(menuBool)}
-        anchorEl={menuBool}
-        onClose={() => setMenuBool(null)}
-        disableAutoFocusItem
-        sx={{ alignContent: 'center' }}
-      >
-        <MenuItem
-          // component={RouterLink}
-          onClick={() => setMenuBool(null)}
-          // to="/app/profile/changepassword"
-        >
-          Change Password
-        </MenuItem>
-        <MenuItem
-          // component={RouterLink}
-          onClick={() => setMenuBool(null)}
-          // to="/app/profile/changeprofile"
-        >
-          Edit Profile
-        </MenuItem>
-      </Menu>
+		/>
 
 		<Typography variant="h6"
 			component="div" sx={{ flexGrow: 1 }}>
 			{title}
 		</Typography>
-		<Button color="inherit" sx={{ml: 2}}>Login</Button>
 		</Toolbar>
 	</AppBar>
 );
 }
 
+Header.defaultProps = {
+	title: "My App"
+};
+
 PropTypes.Header = {
   title: PropTypes.string.isRequired,
-  onMenuClick: PropTypes.func.isRequired,
-}
+};
